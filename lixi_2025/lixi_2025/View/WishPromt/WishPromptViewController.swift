@@ -73,7 +73,7 @@ private extension WishPromptViewController {
     }
     
     func configTableView(){
-        tableView.register(WishMessageIdeaTableViewCell.self, forCellReuseIdentifier: WishMessageIdeaTableViewCell.identifier)
+        tableView.register(WishMessageIdeaDisplayTableViewCell.self, forCellReuseIdentifier: WishMessageIdeaDisplayTableViewCell.identifier)
         tableView.register(WishMessageComponentsTableViewCell.self, forCellReuseIdentifier: WishMessageComponentsTableViewCell.identifier)
         tableView.register(WishMessageLiteraryTypeTableViewCell.self, forCellReuseIdentifier: WishMessageLiteraryTypeTableViewCell.identifier)
         tableView.register(WishMessageCreationTableViewCell.self, forCellReuseIdentifier: WishMessageCreationTableViewCell.identifier)
@@ -103,7 +103,7 @@ extension WishPromptViewController: UITableViewDelegate{
         // need plus top padding of WishMessageComponentsTableViewCell type recipient
         let promptRowType = WishPromtViewModel.WishPromtType.allCases[indexPath.row]
         switch promptRowType{
-        case .idea:
+        case .ideaDisplay:
             return ideaCellHeight
         default:
             return UITableView.automaticDimension
@@ -123,8 +123,8 @@ extension WishPromptViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let promptRowType = WishPromtViewModel.WishPromtType.allCases[indexPath.row]
         switch promptRowType{
-        case .idea:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: WishMessageIdeaTableViewCell.identifier, for: indexPath) as? WishMessageIdeaTableViewCell else{
+        case .ideaDisplay:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: WishMessageIdeaDisplayTableViewCell.identifier, for: indexPath) as? WishMessageIdeaDisplayTableViewCell else{
                 return UITableViewCell()
             }
             return cell

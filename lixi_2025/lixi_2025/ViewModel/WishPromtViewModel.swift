@@ -14,10 +14,10 @@ struct WishPromtViewModel: WishPromtVMProtocol{
     
     enum WishPromtType: CaseIterable, Equatable{
         static var allCases: [WishPromtViewModel.WishPromtType]{
-            return [.idea, .recipient, .wishMessage, .aiSuggestion, .literaryTypes(.prose), .actions(.creating)]
+            return [.ideaDisplay, .recipient, .wishMessage, .aiSuggestion, .literaryTypes(.prose), .actions(.creating)]
         }
         
-        case idea
+        case ideaDisplay
         case recipient
         case wishMessage
         case aiSuggestion
