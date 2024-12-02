@@ -153,7 +153,6 @@
 				D27E9BF92CFABCB700B621F5 /* View */,
 				D27E9BF82CFABCB100B621F5 /* ViewModel */,
 				D27E9BF72CFABCAB00B621F5 /* Model */,
-				D27E9BF62CFABC8400B621F5 /* Service */,
 				D27E9BCC2CFABB1800B621F5 /* AppDelegate.swift */,
 				D27E9BCE2CFABB1800B621F5 /* SceneDelegate.swift */,
 				D27E9BD22CFABB1800B621F5 /* Main.storyboard */,
@@ -162,13 +161,6 @@
 				D27E9BDA2CFABB1900B621F5 /* Info.plist */,
 			);
 			path = lixi_2025;
-			sourceTree = "<group>";
-		};
-		D27E9BF62CFABC8400B621F5 /* Service */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Service;
 			sourceTree = "<group>";
 		};
 		D27E9BF72CFABCAB00B621F5 /* Model */ = {

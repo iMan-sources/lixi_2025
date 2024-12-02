@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxRelay
 protocol WishPromtVMProtocol{
     func onDismiss()
     func numberOfRowsInSection(_ section: Int) -> Int
@@ -49,6 +51,7 @@ struct WishPromtViewModel: WishPromtVMProtocol{
     
     
     let sceneCoordinator: SceneCoordinatorType
+    let sampleWishes = PublishRelay<[String]>()
     
     init(sceneCoordinator: SceneCoordinatorType) {
         self.sceneCoordinator = sceneCoordinator
@@ -59,7 +62,17 @@ struct WishPromtViewModel: WishPromtVMProtocol{
     }
     
     func numberOfRowsInSection(_ section: Int) -> Int {
-        // + 1: cell to display wish message
         return WishPromtType.allCases.count
+    }
+    
+    func getWishSamples() -> Single<[String]>{
+        let temp = ["Lời chúc tết năm nay sức khoẻ tràn đầy", "Năm mới phát tài, như ý cát tường","Lời chúc tết năm nay sức khoẻ tràn đầy", "Năm mới phát tài, như ý cát tường"]
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            return Single.create { single in
+                single(.success(temp))
+                return Disposables.create()
+            }
+        }
+        
     }
 }
