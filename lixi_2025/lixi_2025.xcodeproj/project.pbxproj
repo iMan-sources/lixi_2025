@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15D3D3342CFD490700C5616B /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D3D3332CFD490700C5616B /* APIService.swift */; };
+		15D3D3362CFD5FD800C5616B /* DisplayIdeaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D3D3352CFD5FD800C5616B /* DisplayIdeaViewController.swift */; };
+		15D3D3382CFD5FF900C5616B /* DisplayIdeaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D3D3372CFD5FF900C5616B /* DisplayIdeaViewModel.swift */; };
+		15D3D33A2CFD6D4600C5616B /* IdeaContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D3D3392CFD6D4600C5616B /* IdeaContentCollectionViewCell.swift */; };
 		D2077CE32CFAD4E10049152A /* WishPromtNavigationLeftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2077CE22CFAD4E10049152A /* WishPromtNavigationLeftView.swift */; };
 		D2077CE62CFC15460049152A /* WishMessageComponentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2077CE52CFC15460049152A /* WishMessageComponentsTableViewCell.swift */; };
 		D2077CE82CFC1D090049152A /* WishMessageIdeaDisplayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2077CE72CFC1D090049152A /* WishMessageIdeaDisplayTableViewCell.swift */; };
@@ -14,7 +18,6 @@
 		D2077CEC2CFC5C670049152A /* LiteraryTypeSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2077CEB2CFC5C670049152A /* LiteraryTypeSegmentControl.swift */; };
 		D2077CEE2CFC9E460049152A /* WishMessageCreationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2077CED2CFC9E460049152A /* WishMessageCreationTableViewCell.swift */; };
 		D2077CF22CFCBCEF0049152A /* IdeaSampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2077CF12CFCBCEF0049152A /* IdeaSampleView.swift */; };
-		D2077CF62CFCBEBF0049152A /* IdeaDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2077CF52CFCBEBF0049152A /* IdeaDisplayView.swift */; };
 		D27E9BCD2CFABB1800B621F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27E9BCC2CFABB1800B621F5 /* AppDelegate.swift */; };
 		D27E9BCF2CFABB1800B621F5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27E9BCE2CFABB1800B621F5 /* SceneDelegate.swift */; };
 		D27E9BD12CFABB1800B621F5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27E9BD02CFABB1800B621F5 /* HomeViewController.swift */; };
@@ -42,6 +45,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		15D3D3332CFD490700C5616B /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		15D3D3352CFD5FD800C5616B /* DisplayIdeaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayIdeaViewController.swift; sourceTree = "<group>"; };
+		15D3D3372CFD5FF900C5616B /* DisplayIdeaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayIdeaViewModel.swift; sourceTree = "<group>"; };
+		15D3D3392CFD6D4600C5616B /* IdeaContentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdeaContentCollectionViewCell.swift; sourceTree = "<group>"; };
 		D2077CE22CFAD4E10049152A /* WishPromtNavigationLeftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishPromtNavigationLeftView.swift; sourceTree = "<group>"; };
 		D2077CE52CFC15460049152A /* WishMessageComponentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishMessageComponentsTableViewCell.swift; sourceTree = "<group>"; };
 		D2077CE72CFC1D090049152A /* WishMessageIdeaDisplayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishMessageIdeaDisplayTableViewCell.swift; sourceTree = "<group>"; };
@@ -49,7 +56,6 @@
 		D2077CEB2CFC5C670049152A /* LiteraryTypeSegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiteraryTypeSegmentControl.swift; sourceTree = "<group>"; };
 		D2077CED2CFC9E460049152A /* WishMessageCreationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishMessageCreationTableViewCell.swift; sourceTree = "<group>"; };
 		D2077CF12CFCBCEF0049152A /* IdeaSampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdeaSampleView.swift; sourceTree = "<group>"; };
-		D2077CF52CFCBEBF0049152A /* IdeaDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdeaDisplayView.swift; sourceTree = "<group>"; };
 		D27E9BC92CFABB1800B621F5 /* lixi_2025.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lixi_2025.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D27E9BCC2CFABB1800B621F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D27E9BCE2CFABB1800B621F5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +95,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		15D3D3322CFD48F400C5616B /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				15D3D3332CFD490700C5616B /* APIService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		D2077CE12CFAD4A40049152A /* WishPromt */ = {
 			isa = PBXGroup;
 			children = (
@@ -115,7 +129,8 @@
 			children = (
 				D2077CE72CFC1D090049152A /* WishMessageIdeaDisplayTableViewCell.swift */,
 				D2077CF12CFCBCEF0049152A /* IdeaSampleView.swift */,
-				D2077CF52CFCBEBF0049152A /* IdeaDisplayView.swift */,
+				15D3D3352CFD5FD800C5616B /* DisplayIdeaViewController.swift */,
+				15D3D3392CFD6D4600C5616B /* IdeaContentCollectionViewCell.swift */,
 			);
 			path = IdeaDisplay;
 			sourceTree = "<group>";
@@ -148,6 +163,7 @@
 		D27E9BCB2CFABB1800B621F5 /* lixi_2025 */ = {
 			isa = PBXGroup;
 			children = (
+				15D3D3322CFD48F400C5616B /* Service */,
 				D27E9BFB2CFABCFF00B621F5 /* Scene */,
 				D27E9BFA2CFABCCD00B621F5 /* Extensions */,
 				D27E9BF92CFABCB700B621F5 /* View */,
@@ -174,6 +190,7 @@
 		D27E9BF82CFABCB100B621F5 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				15D3D3372CFD5FF900C5616B /* DisplayIdeaViewModel.swift */,
 				D27E9BFE2CFABE3400B621F5 /* WishPromtViewModel.swift */,
 				D27E9C0C2CFAC0F500B621F5 /* HomeViewModel.swift */,
 			);
@@ -295,10 +312,13 @@
 			files = (
 				D27E9BFF2CFABE3400B621F5 /* WishPromtViewModel.swift in Sources */,
 				D27E9C032CFABEB800B621F5 /* SceneCoordinatorType.swift in Sources */,
+				15D3D3382CFD5FF900C5616B /* DisplayIdeaViewModel.swift in Sources */,
+				15D3D33A2CFD6D4600C5616B /* IdeaContentCollectionViewCell.swift in Sources */,
 				D2077CEE2CFC9E460049152A /* WishMessageCreationTableViewCell.swift in Sources */,
 				D27E9BFD2CFABE1400B621F5 /* Scene.swift in Sources */,
+				15D3D3342CFD490700C5616B /* APIService.swift in Sources */,
+				15D3D3362CFD5FD800C5616B /* DisplayIdeaViewController.swift in Sources */,
 				D2077CE62CFC15460049152A /* WishMessageComponentsTableViewCell.swift in Sources */,
-				D2077CF62CFCBEBF0049152A /* IdeaDisplayView.swift in Sources */,
 				D27E9C072CFABF1C00B621F5 /* Scene+ViewController.swift in Sources */,
 				D27E9C052CFABEF300B621F5 /* SceneCoordinator.swift in Sources */,
 				D2077CE32CFAD4E10049152A /* WishPromtNavigationLeftView.swift in Sources */,

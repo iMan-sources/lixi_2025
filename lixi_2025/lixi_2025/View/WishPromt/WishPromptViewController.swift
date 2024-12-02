@@ -34,6 +34,13 @@ class WishPromptViewController: UIViewController, BindableType {
         return tableView
     }()
     
+    private lazy var displayIdeaVC: DisplayIdeaViewController = {
+        let vc = DisplayIdeaViewController()
+        let displayIdeaVM = DisplayIdeaViewModel()
+        vc.bindViewModel(to: displayIdeaVM)
+        return vc
+    }()
+    
     //MARK: - Properties
     var viewModel: WishPromtVMProtocol!
     private let disposeBag = DisposeBag()
@@ -52,6 +59,21 @@ class WishPromptViewController: UIViewController, BindableType {
         navigationLeftView.buttonTapped.subscribe(onNext: { [weak self] _ in
             self?.viewModel.onDismiss()
         }).disposed(by: disposeBag)
+        
+        viewModel.sampleWishes.bind(to: displayIdeaVC.viewModel.samplesToDisplay).disposed(by: disposeBag)
+        
+        viewModel.isGeneratingWishes.subscribe(onNext: { [weak self] isGenerating in
+            if isGenerating{
+                // change title of creating -> editing
+                // remove sample
+                
+            }else{
+                
+            }
+            
+        }).disposed(by: disposeBag)
+        
+        viewModel.getSampleWishes()
     }
     
 }
@@ -127,6 +149,13 @@ extension WishPromptViewController: UITableViewDataSource{
             guard let cell = tableView.dequeueReusableCell(withIdentifier: WishMessageIdeaDisplayTableViewCell.identifier, for: indexPath) as? WishMessageIdeaDisplayTableViewCell else{
                 return UITableViewCell()
             }
+            
+            addChild(displayIdeaVC)
+            displayIdeaVC.willMove(toParent: self)
+            displayIdeaVC.view.frame = cell.mainView.bounds
+            cell.mainView.addSubview(displayIdeaVC.view)
+            displayIdeaVC.didMove(toParent: self)
+            
             return cell
         case .recipient, .wishMessage, .aiSuggestion:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: WishMessageComponentsTableViewCell.identifier, for: indexPath) as? WishMessageComponentsTableViewCell else{
@@ -143,6 +172,7 @@ extension WishPromptViewController: UITableViewDataSource{
             guard let cell = tableView.dequeueReusableCell(withIdentifier: WishMessageCreationTableViewCell.identifier, for: indexPath) as? WishMessageCreationTableViewCell else{
                 return UITableViewCell()
             }
+            cell.creationButtonTapped.bind(to: self.viewModel.creationButtonTapped).disposed(by: disposeBag)
             return cell
         }
     }

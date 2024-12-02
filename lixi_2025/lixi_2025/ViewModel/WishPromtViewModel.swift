@@ -8,11 +8,17 @@
 import UIKit
 import RxSwift
 import RxRelay
-protocol WishPromtVMProtocol{
+protocol WishPromtVMProtocol: AnyObject{
     func onDismiss()
     func numberOfRowsInSection(_ section: Int) -> Int
+    var sampleWishes: Observable<[String]> {get}
+    var creationButtonTapped: PublishSubject<Void> {get set}
+    var isGeneratingWishes: Observable<Bool> {get}
+    func getSampleWishes()
 }
-struct WishPromtViewModel: WishPromtVMProtocol{
+class WishPromtViewModel: WishPromtVMProtocol{
+    
+    
     
     enum WishPromtType: CaseIterable, Equatable{
         static var allCases: [WishPromtViewModel.WishPromtType]{
@@ -38,6 +44,23 @@ struct WishPromtViewModel: WishPromtVMProtocol{
                 return nil
             }
         }
+        
+        var index: Int{
+            switch self {
+            case .ideaDisplay:
+                return 0
+            case .recipient:
+                return 1
+            case .wishMessage:
+                return 2
+            case .aiSuggestion:
+                return 3
+            case .literaryTypes(_):
+                return 4
+            case .actions(_):
+                return 5
+            }
+        }
     }
     
     enum WishMessageLiteraryType: String, CaseIterable{
@@ -49,12 +72,27 @@ struct WishPromtViewModel: WishPromtVMProtocol{
         case creating = "Tạo lời chúc"
     }
     
+    private let disposeBag = DisposeBag()
+    var creationButtonTapped: PublishSubject<Void> = PublishSubject()
     
     let sceneCoordinator: SceneCoordinatorType
-    let sampleWishes = PublishRelay<[String]>()
+    private var sampleWishesRelay = PublishRelay<[String]>()
+    private var isCreatingWishesRelay = PublishRelay<Bool>()
     
+    var isGeneratingWishes: Observable<Bool>{
+        return isCreatingWishesRelay.asObservable()
+    }
+    
+    var sampleWishes: Observable<[String]>{
+        return sampleWishesRelay.asObservable()
+    }
+
     init(sceneCoordinator: SceneCoordinatorType) {
         self.sceneCoordinator = sceneCoordinator
+        
+        creationButtonTapped.subscribe(onNext: { [weak self] _ in
+            self?.fetchingWishes()
+        }).disposed(by: disposeBag)
     }
     
     func onDismiss() {
@@ -65,14 +103,19 @@ struct WishPromtViewModel: WishPromtVMProtocol{
         return WishPromtType.allCases.count
     }
     
-    func getWishSamples() -> Single<[String]>{
-        let temp = ["Lời chúc tết năm nay sức khoẻ tràn đầy", "Năm mới phát tài, như ý cát tường","Lời chúc tết năm nay sức khoẻ tràn đầy", "Năm mới phát tài, như ý cát tường"]
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            return Single.create { single in
-                single(.success(temp))
-                return Disposables.create()
-            }
-        }
-        
+    func getSampleWishes(){
+        APIService.shared.getWishSamples().asObservable().subscribe(onNext: { [weak self] samples in
+            self?.sampleWishesRelay.accept(samples)
+        }).disposed(by: disposeBag)
     }
+    
+    func fetchingWishes(){
+        self.isCreatingWishesRelay.accept(true)
+        APIService.shared.generateWish().asObservable().subscribe(onNext: { [weak self] wishes in
+//            self?.generatedWishes.accept(samples)
+            self?.isCreatingWishesRelay.accept(false)
+        }).disposed(by: disposeBag)
+    }
+    
+    
 }

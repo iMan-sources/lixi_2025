@@ -14,23 +14,25 @@ class IdeaSampleView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Mẫu ý tưởng 💡"
         label.font = .systemFont(ofSize: 15)
+
         return label
     }()
     
-    private lazy var ideaScrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.showsHorizontalScrollIndicator = false
-        scrollView.showsVerticalScrollIndicator = false
-        return scrollView
+    private lazy var contentView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 12
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .clear
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(IdeaContentCollectionViewCell.self, forCellWithReuseIdentifier: IdeaContentCollectionViewCell.identifier)
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        return collectionView
     }()
     
-    private lazy var contentView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        return stackView
-    }()
+    private var samples: [String] = []
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -44,6 +46,11 @@ class IdeaSampleView: UIView {
         layout()
     }
     
+    func updateSampleWishesList(with samples: [String]){
+        self.samples = samples
+        contentView.reloadData()
+    }
+    
 }
 
 //MARK: - IdeaSampleView
@@ -54,21 +61,43 @@ private extension IdeaSampleView {
     
     func layout(){
         addSubview(sampleIdeaLabel)
-        addSubview(ideaScrollView)
-        ideaScrollView.addSubview(contentView)
-        
+        addSubview(contentView)
         NSLayoutConstraint.activate([
             sampleIdeaLabel.topAnchor.constraint(equalTo: topAnchor),
             sampleIdeaLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
         ])
         
         NSLayoutConstraint.activate([
-            ideaScrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            ideaScrollView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            ideaScrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            ideaScrollView.topAnchor.constraint(equalTo: sampleIdeaLabel.bottomAnchor, constant: 12)
-        ])
+            contentView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            contentView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            contentView.topAnchor.constraint(equalTo: sampleIdeaLabel.bottomAnchor, constant: 12),
+            contentView.bottomAnchor.constraint(equalTo: bottomAnchor)
+         ])
         
         heightAnchor.constraint(equalToConstant: 82).isActive = true
+        
     }
 }
+
+extension IdeaSampleView: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 160, height: 52)
+    }
+}
+
+extension IdeaSampleView: UICollectionViewDataSource{
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return samples.count
+    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IdeaContentCollectionViewCell.identifier, for: indexPath) as? IdeaContentCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        
+        cell.addSample(withSample: samples[indexPath.row])
+        return cell
+    }
+}
+
+

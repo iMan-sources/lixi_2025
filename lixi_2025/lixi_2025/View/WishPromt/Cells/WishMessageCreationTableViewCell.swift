@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import RxRelay
 
 class WishMessageCreationTableViewCell: UITableViewCell, ReusableView {
     
@@ -17,6 +20,9 @@ class WishMessageCreationTableViewCell: UITableViewCell, ReusableView {
         button.backgroundColor = .systemRed
         return button
     }()
+    private let disposeBag = DisposeBag()
+    let creationButtonTapped = PublishSubject<Void>()
+    
     //MARK: - Properties
     static let bottomPadding: CGFloat = 40.0
     static var buttonHeight: CGFloat = 48.0
@@ -27,7 +33,7 @@ class WishMessageCreationTableViewCell: UITableViewCell, ReusableView {
     //MARK: - Lifecycle
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     
@@ -35,16 +41,23 @@ class WishMessageCreationTableViewCell: UITableViewCell, ReusableView {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
         layout()
+        bindingEvent()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Action
+    
 }
 
 //MARK: - WishMessageCreatingTableViewCell
 private extension WishMessageCreationTableViewCell {
+    func bindingEvent(){
+        creationButton.rx.tap.bind(to: creationButtonTapped).disposed(by: disposeBag)
+    }
+    
     func setupUI(){
         selectionStyle = .none
         creationButton.layer.cornerRadius = WishMessageCreationTableViewCell.buttonHeight / 2

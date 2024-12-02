@@ -9,8 +9,8 @@ import UIKit
 
 class WishMessageIdeaDisplayTableViewCell: UITableViewCell, ReusableView {
     
-    private lazy var mainView: IdeaDisplayView = {
-        let view = IdeaDisplayView()
+    lazy var mainView: UIView = {
+        let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -30,7 +30,11 @@ class WishMessageIdeaDisplayTableViewCell: UITableViewCell, ReusableView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
+    func configure(with samples: [String]){
+//        mainView.displaySamples(with: samples)
+    }
+    
 }
 
 //MARK: - WishMessageIdeaTableViewCell
